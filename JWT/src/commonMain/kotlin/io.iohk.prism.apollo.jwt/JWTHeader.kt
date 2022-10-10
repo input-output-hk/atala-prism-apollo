@@ -10,7 +10,7 @@ import kotlin.jvm.JvmOverloads
  * A representation of a JSON Web Token header.
  */
 @Serializable
-data class JWTHeader @JvmOverloads constructor(
+final data class JWTHeader @JvmOverloads constructor(
     /**
      * Type Header Parameter
      */

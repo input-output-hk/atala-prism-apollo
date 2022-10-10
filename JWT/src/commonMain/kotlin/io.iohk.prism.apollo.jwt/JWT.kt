@@ -10,7 +10,7 @@ import kotlin.jvm.JvmStatic
 /**
  * A class representing the `Header` and `Claims` of a JSON Web Token.
  */
-class JWT {
+final class JWT {
 
     /**
      * The JWT header.

@@ -3,7 +3,7 @@ package io.iohk.prism.apollo.jwt
 /**
  * ValidateClaimsResult list the possible results of a call to JWT.validateClaims method.
  */
-enum class ValidateClaimsResult(val description: String) {
+final enum class ValidateClaimsResult(val description: String) {
     /**
      * Successful validation.
      */

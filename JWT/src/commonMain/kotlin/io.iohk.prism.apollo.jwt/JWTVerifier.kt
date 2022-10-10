@@ -5,7 +5,7 @@ import kotlin.jvm.JvmStatic
 /**
  * JWTVerifier will be used to verify the signature of a JWT is valid for the provided `Header` and `Claims`
  */
-class JWTVerifier(
+final class JWTVerifier(
     private val verifierAlgorithm: VerifierAlgorithm
 ) {
 

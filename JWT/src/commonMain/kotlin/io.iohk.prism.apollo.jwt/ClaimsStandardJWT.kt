@@ -11,7 +11,7 @@ import kotlin.jvm.JvmOverloads
  * [RFC7519](https://tools.ietf.org/html/rfc7519#section-4.1).
  */
 @Serializable
-data class ClaimsStandardJWT @JvmOverloads constructor(
+final data class ClaimsStandardJWT @JvmOverloads constructor(
     override var exp: Long? = null,
     override var nbf: Long? = null,
     override var iat: Long? = null,

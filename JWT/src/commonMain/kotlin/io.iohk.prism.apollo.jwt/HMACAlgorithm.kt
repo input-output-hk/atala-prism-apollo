@@ -7,7 +7,7 @@ import io.iohk.prism.apollo.hashing.SHA384
 import io.iohk.prism.apollo.hashing.SHA512
 import io.iohk.prism.apollo.hashing.internal.Digest
 
-class HMACAlgorithm(
+final class HMACAlgorithm(
     private val key: ByteArray,
     private val algo: HMACAlgo
 ) : SignerAlgorithm, VerifierAlgorithm {

@@ -5,7 +5,7 @@ import kotlin.jvm.JvmStatic
 /**
  * JWTSigner will be used to sign the JWT `Header` and `Claims` and generate a signed JWT.
  */
-class JWTSigner(
+final class JWTSigner(
     /**
      * The name of the algorithm that will be set in the "alg" header
      */
