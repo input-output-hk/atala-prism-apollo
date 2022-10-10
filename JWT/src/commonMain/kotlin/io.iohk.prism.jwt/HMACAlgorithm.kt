@@ -11,7 +11,7 @@ import kotlin.jvm.JvmStatic
 
 class HMACAlgorithm(
     private val key: ByteArray,
-    private val algo: JWTHMACAlgo
+    private val algo: HMACAlgo
 ): SignerAlgorithm, VerifierAlgorithm {
     val name: String = "HMAC"
 
@@ -36,13 +36,13 @@ class HMACAlgorithm(
 
     fun sign(data: ByteArray) : ByteArray {
         val hash: Digest = when (algo) {
-            JWTHMACAlgo.HS256 -> {
+            HMACAlgo.SHA256 -> {
                 SHA256().createHmac(key)
             }
-            JWTHMACAlgo.HS384 -> {
+            HMACAlgo.SHA384 -> {
                 SHA384().createHmac(key)
             }
-            JWTHMACAlgo.HS512 -> {
+            HMACAlgo.SHA512 -> {
                 SHA512().createHmac(key)
             }
         }
@@ -54,21 +54,7 @@ class HMACAlgorithm(
         return expectedHMAC.contentEquals(signature)
     }
 
-    final enum class JWTHMACAlgo(val algo: String) {
-        HS256("HS256"),
-        HS384("HS384"),
-        HS512("HS512");
-
-        companion object {
-            @JvmStatic
-            fun exist(algo: String): Boolean {
-                for (element in JWTHMACAlgo.values()) {
-                    if (element.algo == algo) {
-                        return true
-                    }
-                }
-                return false
-            }
-        }
+    final enum class HMACAlgo {
+        SHA256, SHA384, SHA512;
     }
 }

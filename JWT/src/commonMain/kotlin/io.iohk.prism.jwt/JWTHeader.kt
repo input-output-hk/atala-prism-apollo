@@ -1,8 +1,14 @@
 package io.iohk.prism.jwt
 
+import io.iohk.atala.prism.apollo.base64.base64Encoded
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+
 /**
  * A representation of a JSON Web Token header.
  */
+@Serializable
 data class JWTHeader(
     /**
      * Type Header Parameter
@@ -48,4 +54,13 @@ data class JWTHeader(
      * Critical Header Parameter
      */
     public var crit: List<String>? = null
-)
+) {
+    /**
+     * Convert it to JSON String then to Base64 string
+     *
+     * @return Base64 string representation of the [JWTHeader]
+     */
+    fun encodeToBase64(): String {
+        return Json.Default.encodeToString(this).base64Encoded
+    }
+}
