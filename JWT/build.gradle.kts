@@ -101,6 +101,7 @@ kotlin {
                 implementation(project(":Hashing"))
                 implementation(project(":Base64"))
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
             }
         }
         val commonTest by getting {
