@@ -1,6 +1,10 @@
 package io.iohk.atala.prism.jwt
 
-import io.iohk.prism.apollo.jwt.*
+import io.iohk.prism.apollo.jwt.ClaimsStandardJWT
+import io.iohk.prism.apollo.jwt.JWT
+import io.iohk.prism.apollo.jwt.JWTSigner
+import io.iohk.prism.apollo.jwt.JWTVerifier
+import io.iohk.prism.apollo.jwt.ValidateClaimsResult
 import kotlinx.datetime.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals

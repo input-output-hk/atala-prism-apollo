@@ -10,7 +10,7 @@ import io.iohk.prism.apollo.hashing.internal.Digest
 class HMACAlgorithm(
     private val key: ByteArray,
     private val algo: HMACAlgo
-): SignerAlgorithm, VerifierAlgorithm {
+) : SignerAlgorithm, VerifierAlgorithm {
     val name: String = "HMAC"
 
     override fun sign(header: String, claims: String): String {
@@ -32,7 +32,7 @@ class HMACAlgorithm(
         }
     }
 
-    fun sign(data: ByteArray) : ByteArray {
+    fun sign(data: ByteArray): ByteArray {
         val hash: Digest = when (algo) {
             HMACAlgo.SHA256 -> {
                 SHA256().createHmac(key)
@@ -47,7 +47,7 @@ class HMACAlgorithm(
         return hash.digest(data)
     }
 
-    fun verify(signature: ByteArray, data: ByteArray) : Boolean {
+    fun verify(signature: ByteArray, data: ByteArray): Boolean {
         val expectedHMAC = sign(data)
         return expectedHMAC.contentEquals(signature)
     }

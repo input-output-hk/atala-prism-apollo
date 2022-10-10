@@ -54,6 +54,8 @@ val String.base64UrlDecoded: String
 val String.base64UrlDecodedBytes: ByteArray
     get() = Base64.decode(this, Encoding.UrlSafe).map {
         it.toByte()
-    }.toList().dropLast(count {
-        (it == '=') || (it == Char.MIN_VALUE)
-    }).toByteArray()
+    }.toList().dropLast(
+        count {
+            (it == '=') || (it == Char.MIN_VALUE)
+        }
+    ).toByteArray()
