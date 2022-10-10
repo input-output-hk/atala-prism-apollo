@@ -50,4 +50,18 @@ final object Base64 {
             .map { sequenceOf(0xFF.and(it shr 16), 0xFF.and(it shr 8), 0xFF.and(it)) }
             .flatten()
     }
+
+    /**
+     * Convert from Base64 to Base64Url
+     */
+    fun fromBase64ToBase64URL(from: String): String {
+        return from.base64DecodedBytes.base64UrlEncoded
+    }
+
+    /**
+     * Convert from Base64Url to Base64
+     */
+    fun fromBase64URLToBase64(from: String): String {
+        return from.base64UrlDecodedBytes.base64Encoded
+    }
 }
