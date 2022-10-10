@@ -18,6 +18,14 @@ class JWTSigner(
 
     companion object {
         /**
+         * Initialize a JWTSigner that will not sign the JWT. This is equivelent to using the "none" alg header.
+         */
+        @JvmStatic
+        fun none() : JWTSigner {
+            return JWTSigner("none", NoneAlgorithm())
+        }
+
+        /**
          * Initialize a JWTSigner using the HMAC 256 bits algorithm and the provided privateKey.
          *
          * @param key The HMAC symmetric password data.
