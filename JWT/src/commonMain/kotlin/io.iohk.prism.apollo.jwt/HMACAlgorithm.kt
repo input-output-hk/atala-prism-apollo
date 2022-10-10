@@ -1,13 +1,11 @@
-package io.iohk.prism.jwt
+package io.iohk.prism.apollo.jwt
 
-import io.iohk.atala.prism.apollo.base64.base64UrlDecoded
 import io.iohk.atala.prism.apollo.base64.base64UrlDecodedBytes
 import io.iohk.atala.prism.apollo.base64.base64UrlEncoded
 import io.iohk.prism.apollo.hashing.SHA256
 import io.iohk.prism.apollo.hashing.SHA384
 import io.iohk.prism.apollo.hashing.SHA512
 import io.iohk.prism.apollo.hashing.internal.Digest
-import kotlin.jvm.JvmStatic
 
 class HMACAlgorithm(
     private val key: ByteArray,

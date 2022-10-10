@@ -1,4 +1,4 @@
-package io.iohk.prism.jwt
+package io.iohk.prism.apollo.jwt
 
 /**
  * ValidateClaimsResult list the possible results of a call to JWT.validateClaims method.

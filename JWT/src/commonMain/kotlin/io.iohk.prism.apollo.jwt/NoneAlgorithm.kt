@@ -1,4 +1,4 @@
-package io.iohk.prism.jwt
+package io.iohk.prism.apollo.jwt
 
 /**
  * An EncryptionAlgorithm representing an alg of "none" in a JWT.

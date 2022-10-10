@@ -1,4 +1,4 @@
-package io.iohk.prism.jwt
+package io.iohk.prism.apollo.jwt
 
 import io.iohk.atala.prism.apollo.base64.base64Encoded
 import kotlinx.serialization.Serializable

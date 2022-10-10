@@ -1,8 +1,7 @@
-package io.iohk.prism.jwt
+package io.iohk.prism.apollo.jwt
 
 import io.iohk.atala.prism.apollo.base64.base64UrlDecoded
 import kotlinx.datetime.Clock
-import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlin.jvm.JvmStatic

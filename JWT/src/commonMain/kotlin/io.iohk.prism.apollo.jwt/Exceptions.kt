@@ -1,4 +1,4 @@
-package io.iohk.prism.jwt
+package io.iohk.prism.apollo.jwt
 
 sealed class JWTError(message: String?) : Exception(message) {
     class InvalidJWTString(message: String? = "Input was not a valid JWT String") : JWTError(message)
