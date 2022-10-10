@@ -91,7 +91,7 @@ kotlin {
             framework {
                 this.baseName = currentModuleName
             }
-            
+
         }
     }
 
