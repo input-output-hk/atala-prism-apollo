@@ -1,4 +1,4 @@
-# Apollo - Base64
+# Apollo - UUID
 [![Kotlin](https://img.shields.io/badge/kotlin-1.7.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 
 ![android](https://camo.githubusercontent.com/b1d9ad56ab51c4ad1417e9a5ad2a8fe63bcc4755e584ec7defef83755c23f923/687474703a2f2f696d672e736869656c64732e696f2f62616467652f706c6174666f726d2d616e64726f69642d3645444238442e7376673f7374796c653d666c6174)
@@ -13,7 +13,7 @@
 ![watchos](https://camo.githubusercontent.com/135dbadae40f9cabe7a3a040f9380fb485cff36c90909f3c1ae36b81c304426b/687474703a2f2f696d672e736869656c64732e696f2f62616467652f706c6174666f726d2d77617463686f732d4330433043302e7376673f7374796c653d666c6174)
 ![windows](https://camo.githubusercontent.com/01bd13daf3ea3068952f50840e3f36a305803cc248af08f084cb9e37df78123d/687474703a2f2f696d672e736869656c64732e696f2f62616467652f706c6174666f726d2d77696e646f77732d3444373643442e7376673f7374796c653d666c6174)
 
-Apollo Base64 native implementation
+Apollo UUID native implementation
 
 ## Supported Targets
 | Platform                                 | Supported          |
@@ -44,8 +44,7 @@ Apollo Base64 native implementation
 ## TODO
 1. Add support for Linux target.
 2. Implement the following:
-    - Base32
-    - Base16
+    - Version 2
 
 ## License
 This software is provided 'as-is', without any express or implied warranty. In no event will the
