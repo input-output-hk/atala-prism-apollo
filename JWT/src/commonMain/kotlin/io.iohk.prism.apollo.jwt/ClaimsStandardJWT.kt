@@ -4,20 +4,21 @@ import io.iohk.atala.prism.apollo.base64.base64Encoded
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmOverloads
 
 /**
  * A class representing the Standard JWT claims as described in
  * [RFC7519](https://tools.ietf.org/html/rfc7519#section-4.1).
  */
 @Serializable
-data class ClaimsStandardJWT(
-    override var exp: Long?,
-    override var nbf: Long?,
-    override var iat: Long?,
-    override var iss: String?,
-    override var sub: String?,
-    override var aud: List<String>?,
-    override var jti: String?
+data class ClaimsStandardJWT @JvmOverloads constructor(
+    override var exp: Long? = null,
+    override var nbf: Long? = null,
+    override var iat: Long? = null,
+    override var iss: String? = null,
+    override var sub: String? = null,
+    override var aud: List<String>? = null,
+    override var jti: String? = null
 ) : Claims {
 
     /**

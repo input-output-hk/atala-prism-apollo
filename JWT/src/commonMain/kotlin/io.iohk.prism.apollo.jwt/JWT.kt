@@ -4,6 +4,7 @@ import io.iohk.atala.prism.apollo.base64.base64UrlDecoded
 import kotlinx.datetime.Clock
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
@@ -27,7 +28,8 @@ class JWT {
      * @param header A JSON Web Token header object.
      * @param claims A JSON Web Token claims object.
      */
-    constructor(header: JWTHeader, claims: ClaimsStandardJWT) {
+    @JvmOverloads
+    constructor(header: JWTHeader = JWTHeader(), claims: ClaimsStandardJWT) {
         this.header = header
         this.claims = claims
     }
@@ -82,7 +84,8 @@ class JWT {
      * @param leeway The time in seconds that the JWT can be invalid but still accepted to account for clock differences.
      * @return A value of [ValidateClaimsResult].
      */
-    fun validateClaims(leeway: Long) : ValidateClaimsResult {
+    @JvmOverloads
+    fun validateClaims(leeway: Long = 0) : ValidateClaimsResult {
         val currentEpochTime: Long = Clock.System.now().toEpochMilliseconds()
         claims.exp?.let {
             if (it + leeway < currentEpochTime) {

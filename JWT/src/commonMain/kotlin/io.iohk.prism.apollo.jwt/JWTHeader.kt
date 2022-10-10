@@ -4,12 +4,13 @@ import io.iohk.atala.prism.apollo.base64.base64Encoded
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlin.jvm.JvmOverloads
 
 /**
  * A representation of a JSON Web Token header.
  */
 @Serializable
-data class JWTHeader(
+data class JWTHeader @JvmOverloads constructor(
     /**
      * Type Header Parameter
      */
