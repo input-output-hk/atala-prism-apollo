@@ -80,6 +80,9 @@ kotlin {
             this.version = rootProject.version.toString()
             this.authors = "IOG"
             this.ios.deploymentTarget = "13.0"
+            this.osx.deploymentTarget = "12.0"
+            this.tvos.deploymentTarget = "13.0"
+            this.watchos.deploymentTarget = "8.0"
             framework {
                 this.baseName = currentModuleName
             }
