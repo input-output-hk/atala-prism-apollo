@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B512F7C428F8A6160091C308 /* IOHKCrypto.docc in Sources */ = {isa = PBXBuildFile; fileRef = B512F7C328F8A6160091C308 /* IOHKCrypto.docc */; };
+		B512F7CA28F8A6170091C308 /* IOHKCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B512F7BF28F8A6160091C308 /* IOHKCrypto.framework */; };
+		B512F7D028F8A6170091C308 /* IOHKCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = B512F7C228F8A6160091C308 /* IOHKCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B512F7DD28F8A6C40091C308 /* AES256Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7DC28F8A6C40091C308 /* AES256Tests.swift */; };
+		B512F7DF28F8A6EA0091C308 /* RSA1024EncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7DE28F8A6EA0091C308 /* RSA1024EncryptorTests.swift */; };
+		B512F7E528F8A7300091C308 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7E428F8A7300091C308 /* Error.swift */; };
+		B512F7E728F8A7450091C308 /* typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7E628F8A7450091C308 /* typealias.swift */; };
+		B512F7E928F8A7530091C308 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7E828F8A7530091C308 /* Utilities.swift */; };
+		B512F7EB28F8A7670091C308 /* AESKeySize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7EA28F8A7670091C308 /* AESKeySize.swift */; };
+		B512F7ED28F8A7760091C308 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7EC28F8A7760091C308 /* Padding.swift */; };
+		B512F7EF28F8A7860091C308 /* BlockMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7EE28F8A7860091C308 /* BlockMode.swift */; };
+		B512F7F128F8A79B0091C308 /* Decryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7F028F8A79B0091C308 /* Decryptor.swift */; };
+		B512F7F328F8A7AB0091C308 /* Encryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7F228F8A7AB0091C308 /* Encryptor.swift */; };
+		B512F7F528F8A7B70091C308 /* Cryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7F428F8A7B70091C308 /* Cryptor.swift */; };
+		B512F7F728F8A7CB0091C308 /* RSADecryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7F628F8A7CB0091C308 /* RSADecryptor.swift */; };
+		B512F7F928F8A7DD0091C308 /* RSAEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7F828F8A7DD0091C308 /* RSAEncryptor.swift */; };
+		B512F7FB28F8A7F30091C308 /* RSAEncryptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7FA28F8A7F30091C308 /* RSAEncryptionType.swift */; };
+		B512F7FD28F8A80C0091C308 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7FC28F8A80C0091C308 /* AES.swift */; };
+		B512F7FF28F8A9D70091C308 /* IOHKCrypto.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B512F7FE28F8A9D70091C308 /* IOHKCrypto.podspec */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B512F7CB28F8A6170091C308 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B512F7B628F8A6160091C308 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B512F7BE28F8A6160091C308;
+			remoteInfo = IOHKCrypto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B512F7BF28F8A6160091C308 /* IOHKCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IOHKCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B512F7C228F8A6160091C308 /* IOHKCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOHKCrypto.h; sourceTree = "<group>"; };
+		B512F7C328F8A6160091C308 /* IOHKCrypto.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = IOHKCrypto.docc; sourceTree = "<group>"; };
+		B512F7C928F8A6170091C308 /* IOHKCryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOHKCryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B512F7DB28F8A6C40091C308 /* IOHKCryptoTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOHKCryptoTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		B512F7DC28F8A6C40091C308 /* AES256Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES256Tests.swift; sourceTree = "<group>"; };
+		B512F7DE28F8A6EA0091C308 /* RSA1024EncryptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSA1024EncryptorTests.swift; sourceTree = "<group>"; };
+		B512F7E428F8A7300091C308 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		B512F7E628F8A7450091C308 /* typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typealias.swift; sourceTree = "<group>"; };
+		B512F7E828F8A7530091C308 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B512F7EA28F8A7670091C308 /* AESKeySize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESKeySize.swift; sourceTree = "<group>"; };
+		B512F7EC28F8A7760091C308 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
+		B512F7EE28F8A7860091C308 /* BlockMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockMode.swift; sourceTree = "<group>"; };
+		B512F7F028F8A79B0091C308 /* Decryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decryptor.swift; sourceTree = "<group>"; };
+		B512F7F228F8A7AB0091C308 /* Encryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryptor.swift; sourceTree = "<group>"; };
+		B512F7F428F8A7B70091C308 /* Cryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cryptor.swift; sourceTree = "<group>"; };
+		B512F7F628F8A7CB0091C308 /* RSADecryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSADecryptor.swift; sourceTree = "<group>"; };
+		B512F7F828F8A7DD0091C308 /* RSAEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAEncryptor.swift; sourceTree = "<group>"; };
+		B512F7FA28F8A7F30091C308 /* RSAEncryptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAEncryptionType.swift; sourceTree = "<group>"; };
+		B512F7FC28F8A80C0091C308 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
+		B512F7FE28F8A9D70091C308 /* IOHKCrypto.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = IOHKCrypto.podspec; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B512F7BC28F8A6160091C308 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B512F7C628F8A6170091C308 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B512F7CA28F8A6170091C308 /* IOHKCrypto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B512F7B528F8A6160091C308 = {
+			isa = PBXGroup;
+			children = (
+				B512F7FE28F8A9D70091C308 /* IOHKCrypto.podspec */,
+				B512F7C128F8A6160091C308 /* IOHKCrypto */,
+				B512F7CD28F8A6170091C308 /* IOHKCryptoTests */,
+				B512F7C028F8A6160091C308 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B512F7C028F8A6160091C308 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7BF28F8A6160091C308 /* IOHKCrypto.framework */,
+				B512F7C928F8A6170091C308 /* IOHKCryptoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B512F7C128F8A6160091C308 /* IOHKCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7E028F8A7040091C308 /* Enums */,
+				B512F7E128F8A70C0091C308 /* Protocols */,
+				B512F7E328F8A7200091C308 /* AES */,
+				B512F7E228F8A7190091C308 /* RSA */,
+				B512F7C228F8A6160091C308 /* IOHKCrypto.h */,
+				B512F7C328F8A6160091C308 /* IOHKCrypto.docc */,
+				B512F7E428F8A7300091C308 /* Error.swift */,
+				B512F7E628F8A7450091C308 /* typealias.swift */,
+				B512F7E828F8A7530091C308 /* Utilities.swift */,
+			);
+			path = IOHKCrypto;
+			sourceTree = "<group>";
+		};
+		B512F7CD28F8A6170091C308 /* IOHKCryptoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7DC28F8A6C40091C308 /* AES256Tests.swift */,
+				B512F7DB28F8A6C40091C308 /* IOHKCryptoTests-Bridging-Header.h */,
+				B512F7DE28F8A6EA0091C308 /* RSA1024EncryptorTests.swift */,
+			);
+			path = IOHKCryptoTests;
+			sourceTree = "<group>";
+		};
+		B512F7E028F8A7040091C308 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7EA28F8A7670091C308 /* AESKeySize.swift */,
+				B512F7EE28F8A7860091C308 /* BlockMode.swift */,
+				B512F7EC28F8A7760091C308 /* Padding.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		B512F7E128F8A70C0091C308 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7F028F8A79B0091C308 /* Decryptor.swift */,
+				B512F7F228F8A7AB0091C308 /* Encryptor.swift */,
+				B512F7F428F8A7B70091C308 /* Cryptor.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B512F7E228F8A7190091C308 /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7FA28F8A7F30091C308 /* RSAEncryptionType.swift */,
+				B512F7F628F8A7CB0091C308 /* RSADecryptor.swift */,
+				B512F7F828F8A7DD0091C308 /* RSAEncryptor.swift */,
+			);
+			path = RSA;
+			sourceTree = "<group>";
+		};
+		B512F7E328F8A7200091C308 /* AES */ = {
+			isa = PBXGroup;
+			children = (
+				B512F7FC28F8A80C0091C308 /* AES.swift */,
+			);
+			path = AES;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B512F7BA28F8A6160091C308 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B512F7D028F8A6170091C308 /* IOHKCrypto.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B512F7BE28F8A6160091C308 /* IOHKCrypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B512F7D328F8A6170091C308 /* Build configuration list for PBXNativeTarget "IOHKCrypto" */;
+			buildPhases = (
+				B512F7BA28F8A6160091C308 /* Headers */,
+				B512F7BB28F8A6160091C308 /* Sources */,
+				B512F7BC28F8A6160091C308 /* Frameworks */,
+				B512F7BD28F8A6160091C308 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IOHKCrypto;
+			productName = IOHKCrypto;
+			productReference = B512F7BF28F8A6160091C308 /* IOHKCrypto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B512F7C828F8A6170091C308 /* IOHKCryptoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B512F7D628F8A6170091C308 /* Build configuration list for PBXNativeTarget "IOHKCryptoTests" */;
+			buildPhases = (
+				B512F7C528F8A6170091C308 /* Sources */,
+				B512F7C628F8A6170091C308 /* Frameworks */,
+				B512F7C728F8A6170091C308 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B512F7CC28F8A6170091C308 /* PBXTargetDependency */,
+			);
+			name = IOHKCryptoTests;
+			productName = IOHKCryptoTests;
+			productReference = B512F7C928F8A6170091C308 /* IOHKCryptoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B512F7B628F8A6160091C308 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					B512F7BE28F8A6160091C308 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					B512F7C828F8A6170091C308 = {
+						CreatedOnToolsVersion = 14.0.1;
+						LastSwiftMigration = 1400;
+					};
+				};
+			};
+			buildConfigurationList = B512F7B928F8A6160091C308 /* Build configuration list for PBXProject "IOHKCrypto" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B512F7B528F8A6160091C308;
+			productRefGroup = B512F7C028F8A6160091C308 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B512F7BE28F8A6160091C308 /* IOHKCrypto */,
+				B512F7C828F8A6170091C308 /* IOHKCryptoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B512F7BD28F8A6160091C308 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B512F7FF28F8A9D70091C308 /* IOHKCrypto.podspec in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B512F7C728F8A6170091C308 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B512F7BB28F8A6160091C308 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B512F7EF28F8A7860091C308 /* BlockMode.swift in Sources */,
+				B512F7F928F8A7DD0091C308 /* RSAEncryptor.swift in Sources */,
+				B512F7FB28F8A7F30091C308 /* RSAEncryptionType.swift in Sources */,
+				B512F7E528F8A7300091C308 /* Error.swift in Sources */,
+				B512F7EB28F8A7670091C308 /* AESKeySize.swift in Sources */,
+				B512F7FD28F8A80C0091C308 /* AES.swift in Sources */,
+				B512F7E728F8A7450091C308 /* typealias.swift in Sources */,
+				B512F7F328F8A7AB0091C308 /* Encryptor.swift in Sources */,
+				B512F7E928F8A7530091C308 /* Utilities.swift in Sources */,
+				B512F7F728F8A7CB0091C308 /* RSADecryptor.swift in Sources */,
+				B512F7C428F8A6160091C308 /* IOHKCrypto.docc in Sources */,
+				B512F7F528F8A7B70091C308 /* Cryptor.swift in Sources */,
+				B512F7F128F8A79B0091C308 /* Decryptor.swift in Sources */,
+				B512F7ED28F8A7760091C308 /* Padding.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B512F7C528F8A6170091C308 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B512F7DF28F8A6EA0091C308 /* RSA1024EncryptorTests.swift in Sources */,
+				B512F7DD28F8A6C40091C308 /* AES256Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B512F7CC28F8A6170091C308 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B512F7BE28F8A6160091C308 /* IOHKCrypto */;
+			targetProxy = B512F7CB28F8A6170091C308 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B512F7D128F8A6170091C308 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		B512F7D228F8A6170091C308 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		B512F7D428F8A6170091C308 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.iohk.prism.apollo.IOHKCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		B512F7D528F8A6170091C308 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.iohk.prism.apollo.IOHKCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		B512F7D728F8A6170091C308 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.iohk.prism.apollo.IOHKCryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "IOHKCryptoTests/IOHKCryptoTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B512F7D828F8A6170091C308 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.iohk.prism.apollo.IOHKCryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "IOHKCryptoTests/IOHKCryptoTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B512F7B928F8A6160091C308 /* Build configuration list for PBXProject "IOHKCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B512F7D128F8A6170091C308 /* Debug */,
+				B512F7D228F8A6170091C308 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B512F7D328F8A6170091C308 /* Build configuration list for PBXNativeTarget "IOHKCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B512F7D428F8A6170091C308 /* Debug */,
+				B512F7D528F8A6170091C308 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B512F7D628F8A6170091C308 /* Build configuration list for PBXNativeTarget "IOHKCryptoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B512F7D728F8A6170091C308 /* Debug */,
+				B512F7D828F8A6170091C308 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B512F7B628F8A6160091C308 /* Project object */;
+}

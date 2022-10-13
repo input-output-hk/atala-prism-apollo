@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
     spec.osx.deployment_target = '12.0'
     spec.tvos.deployment_target = '13.0'
     spec.watchos.deployment_target = '8.0'
-                
+    spec.dependency 'IOHKCrypto', '1.0.0'
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':JWT',
