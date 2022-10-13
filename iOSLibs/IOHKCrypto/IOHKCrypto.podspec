@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     s.tvos.deployment_target = '13.0'
     s.watchos.deployment_target = '8.0'
     
-    s.source_files = 'IOHKCrypto/**/*'
+    s.source_files = 'IOHKCrypto/**/*.swift'
     
     # s.resource_bundles = {
     #   'IOHKCrypto' => ['IOHKCrypto/Assets/*.png']
