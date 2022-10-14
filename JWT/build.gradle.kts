@@ -91,10 +91,7 @@ kotlin {
             framework {
                 this.baseName = currentModuleName
             }
-            // pod("CryptoSwift", "1.6.0")
             pod("IOHKCrypto") {
-                moduleName = "IOHKCrypto"
-                packageName = "IOHKCrypto"
                 version = "1.0.0"
                 source = path(project.file("../iOSLibs/IOHKCrypto"))
             }
