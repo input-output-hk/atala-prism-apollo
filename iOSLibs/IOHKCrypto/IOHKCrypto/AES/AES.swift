@@ -9,174 +9,197 @@ import Foundation
 import CommonCrypto
 import CryptoKit
 
-@objc public class AES: NSObject, Cryptor {
+
+public protocol AESProtocol {
+    /// CommonCrypto Context
+    var context: UnsafeMutablePointer<CCCryptorRef?> { get }
     
-    @objc public private (set) var key: Data
-    @objc public private (set) var iv: Data
-    @objc public private (set) var mode: BlockMode
-    @objc public private (set) var padding: Padding
-    @objc public private (set) var algorithm: CCAlgorithm
-    @objc public private (set) var varient: AESKeySize
+    ///
+    /// Updates the current calculation with data contained in an `NSData` object.
+    ///
+    /// - Parameter data: The `NSData` object
+    ///
+    func update(data: NSData)
     
-    @objc public init(key: Data, mode: BlockMode, iv: Data, padding: Padding) throws {
-        self.varient = try AESKeySize.getAESKeySizeFromKey(key: key)
-        if mode.needIV {
-            if iv == Data() {
-                throw Error.badInputVectorLength
-            }
-        }
-        self.iv = iv
-        self.key = key
-        self.mode = mode
-        self.algorithm = CCAlgorithm(self.varient.value)
-        self.padding = padding
+    ///
+    /// Updates the current calculation with data contained in an `Data` object.
+    ///
+    /// - Parameters data: The `Data` object
+    ///
+    func update(data: Data)
+    
+    ///
+    /// Updates the current calculation with data contained in a byte array.
+    ///
+    /// - Parameter byteArray: The byte array
+    ///
+    func update(byteArray: [UInt8])
+    
+    ///
+    /// Updates the current calculation with data contained in a String.
+    /// The corresponding data will be generated using UTF8 encoding.
+    ///
+    /// - Parameter string: The string of data
+    ///
+    func update(string: String)
+    
+    ///
+    ///    Upates the accumulated encrypted/decrypted data with the contents
+    ///    of a raw byte buffer.
+    ///
+    ///    It is not envisaged the users of the framework will need to call this directly.
+    ///
+    func update(from buffer: UnsafeRawPointer, byteCount: Int)
+    
+    ///
+    ///    Update the buffer
+    ///
+    /// - Parameters:
+    ///        - bufferIn:         Pointer to input buffer
+    ///        - inByteCount:         Number of bytes contained in input buffer
+    ///        - bufferOut:         Pointer to output buffer
+    ///        - outByteCapacity:     Capacity of the output buffer in bytes
+    ///        - outByteCount:     On successful completion, the number of bytes written to the output buffer
+    ///
+    /// - Returns: Status of the update
+    ///
+    func update(bufferIn: UnsafeRawPointer, byteCountIn: Int, bufferOut: UnsafeMutablePointer<UInt8>, byteCapacityOut: Int, byteCountOut: inout Int)
+    
+    ///
+    ///    Retrieves the encrypted or decrypted data.
+    ///
+    ///- Returns: the encrypted or decrypted data or nil if an error occured.
+    ///
+    func final() -> [UInt8]?
+    
+    ///
+    ///    Retrieves all remaining encrypted or decrypted data from this cryptor.
+    ///
+    /// - Note: If the underlying algorithm is an block cipher and the padding option has
+    /// not been specified and the cumulative input to the cryptor has not been an integral
+    ///    multiple of the block length this will fail with an alignment error.
+    ///
+    /// - Note: This method updates the status property
+    ///
+    /// - Parameter byteArrayOut: The output bffer
+    ///
+    /// - Returns: a tuple containing the number of output bytes produced and the status (see Status)
+    ///
+    func final(byteArrayOut: inout [UInt8]) -> Int
+    
+    ///
+    ///    Retrieves all remaining encrypted or decrypted data from this cryptor.
+    ///
+    /// - Note: If the underlying algorithm is an block cipher and the padding option has
+    ///    not been specified and the cumulative input to the cryptor has not been an integral
+    ///    multiple of the block length this will fail with an alignment error.
+    ///
+    /// - Note: This method updates the status property
+    ///
+    /// - Parameters:
+    ///        - bufferOut:         Pointer to output buffer
+    ///        - outByteCapacity:     Capacity of the output buffer in bytes
+    ///        - outByteCount:     On successful completion, the number of bytes written to the output buffer
+    ///
+    /// - Returns: Status of the update
+    ///
+    func final(bufferOut: UnsafeMutablePointer<UInt8>, byteCapacityOut: Int, byteCountOut: inout Int)
+    
+    ///
+    ///    Determines the number of bytes that will be output by this Cryptor if inputBytes of additional
+    ///    data is input.
+    ///
+    /// - Parameters:
+    ///        - inputByteCount:     Number of bytes that will be input.
+    ///        - isFinal:             True if buffer to be input will be the last input buffer, false otherwise.
+    ///
+    /// - Returns: The final output length
+    ///
+    func getOutputLength(inputByteCount: Int, isFinal: Bool) -> Int
+    
+//    private enum AESOperation: CCOperation {
+//        case encrypt
+//        case deccrypt
+//
+//        var value: CCOperation {
+//            switch self {
+//            case .encrypt:
+//                return CCOperation(kCCEncrypt)
+//            case .deccrypt:
+//                return CCOperation(kCCDecrypt)
+//            }
+//        }
+//    }
+}
+
+extension AESProtocol {
+    
+    public func update(data: NSData) {
+        update(from: data.bytes, byteCount: size_t(data.length))
     }
     
-    @objc public init(key: Data, varient: AESKeySize, mode: BlockMode, iv: Data, padding: Padding) throws {
-        let checkVarient = try AESKeySize.getAESKeySizeFromKey(key: key)
-        if varient == checkVarient {
-            if mode.needIV {
-                if iv == Data() {
-                    throw Error.badInputVectorLength
-                }
-            }
-            self.varient = varient
-            self.iv = iv
-            self.key = key
-            self.mode = mode
-            self.algorithm = CCAlgorithm(self.varient.value)
-            self.padding = padding
-        } else {
-            throw Error.wrongVarientProvided
+    public func update(data: Data) {
+        data.withUnsafeBytes {
+            update(from: $0.baseAddress!, byteCount: size_t(data.count))
         }
     }
     
-    // MARK: - Encryptor
-    public func encrypt(str: String, encoding: String.Encoding = .utf8) -> String? {
-        return encrypt(str: str, encoding: encoding)?.base64EncodedString()
+    public func update(byteArray: [UInt8]) {
+        update(from: byteArray, byteCount: size_t(byteArray.count))
     }
     
-    public func encrypt(str: String, encoding: String.Encoding = .utf8) -> Data? {
-        do {
-            if let strData = str.data(using: encoding) {
-                return try crypt(input: strData, operation: .encrypt)
-            } else {
-                return nil
-            }
-        } catch {
-            return nil
-        }
+    public func update(string: String) {
+        update(from: string, byteCount: size_t(string.utf8.count))
     }
     
-    @objc public func encrypt(data: Data) -> Data? {
-        do {
-            return try crypt(input: data, operation: .encrypt)
-        } catch {
-            return nil
+    public func final(byteArrayOut: inout [UInt8]) -> Int {
+        let dataOutAvailable = byteArrayOut.count
+        var dataOutMoved = 0
+        final(bufferOut: &byteArrayOut, byteCapacityOut: dataOutAvailable, byteCountOut: &dataOutMoved)
+        return dataOutMoved
+    }
+    
+    public func final(bufferOut: UnsafeMutablePointer<UInt8>, byteCapacityOut: Int, byteCountOut: inout Int) {
+        let rawStatus = CCCryptorFinal(self.context.pointee, bufferOut, byteCapacityOut, &byteCountOut)
+        if rawStatus != kCCSuccess {
+            fatalError("CCCryptorUpdate returned unexpected status.")
         }
     }
     
-    // MARK: - Decryptor
-    public func decrypt(str: String, encoding: String.Encoding = .utf8) -> String? {
-        if let decryptedData: Data = decrypt(str: str) {
-            return String(data: decryptedData, encoding: encoding)
-        } else {
-            return nil
+    public func getOutputLength(inputByteCount: Int, isFinal: Bool = false) -> Int {
+        return CCCryptorGetOutputLength(self.context.pointee, inputByteCount, isFinal)
+    }
+}
+
+@objc public class AESBase: NSObject, AESProtocol {
+    /// CommonCrypto Context
+    public private (set) var context = UnsafeMutablePointer<CCCryptorRef?>.allocate(capacity: 1)
+    
+    /// Internal accumulator for gathering data from the update() and final() functions.
+    var accumulator: [UInt8] = []
+    
+    // MARK: - Helper methods
+    public func update(from buffer: UnsafeRawPointer, byteCount: Int) {
+        let outputLength = Int(self.getOutputLength(inputByteCount: byteCount, isFinal: false))
+        var dataOut = Array<UInt8>(repeating: 0, count:outputLength)
+        var dataOutMoved = 0
+        update(bufferIn: buffer, byteCountIn: byteCount, bufferOut: &dataOut, byteCapacityOut: dataOut.count, byteCountOut: &dataOutMoved)
+        accumulator += dataOut[0..<Int(dataOutMoved)]
+    }
+    
+    public func update(bufferIn: UnsafeRawPointer, byteCountIn: Int, bufferOut: UnsafeMutablePointer<UInt8>, byteCapacityOut: Int, byteCountOut: inout Int) {
+        let rawStatus = CCCryptorUpdate(self.context.pointee, bufferIn, byteCountIn, bufferOut, byteCapacityOut, &byteCountOut)
+        if rawStatus != kCCSuccess {
+            fatalError("CCCryptorUpdate returned unexpected status.")
         }
     }
     
-    @objc public func decrypt(str: String) -> Data? {
-        if let decodedStrData = Data(base64Encoded: str) {
-            return decrypt(data: decodedStrData)
-        } else {
-            return nil
-        }
-    }
-    
-    @objc public func decrypt(data: Data) -> Data? {
-        do {
-            return try crypt(input: data , operation: .deccrypt)
-        } catch {
-            return nil
-        }
-    }
-    
-    // MARK: - Helper function
-    private func crypt(input: Data, operation: AESOperation) throws -> Data {
-        if mode == .gcm {
-            let key = SymmetricKey(data: input)
-            switch operation {
-            case .encrypt:
-                do {
-                    let sealedBox = try CryptoKit.AES.GCM.seal(input, using: key, nonce: CryptoKit.AES.GCM.Nonce(data: iv))
-                    return try CryptoKit.AES.GCM.open(sealedBox, using: key)
-                } catch let ex {
-                    throw Error.cryptoFailed(description: ex.localizedDescription)
-                }
-            case .deccrypt:
-                do {
-                    let sealedBox = try CryptoKit.AES.GCM.SealedBox(nonce:  CryptoKit.AES.GCM.Nonce(data: iv), ciphertext: input, tag: Data())
-                    return try CryptoKit.AES.GCM.open(sealedBox, using: key)
-                } catch let ex {
-                    throw Error.cryptoFailed(description: ex.localizedDescription)
-                }
-            }
-        }
-        
-        var outLength = Int(0)
-        var outBytes = [UInt8](repeating: 0, count: input.count + kCCBlockSizeAES128)
-        var status: CCCryptorStatus = CCCryptorStatus(kCCSuccess)
-        let currentPadding: CCOptions
-        switch padding {
-        case .pkcs7Padding:
-            currentPadding = CCOptions(kCCOptionPKCS7Padding)
-        case .noPadding:
-            currentPadding = CCOptions()
-        }
-        
-        input.withUnsafeBytes { rawBufferPointer in
-            let encryptedBytes = rawBufferPointer.baseAddress!
-            iv.withUnsafeBytes { rawBufferPointer in
-                let ivBytes = rawBufferPointer.baseAddress!
-                key.withUnsafeBytes { rawBufferPointer in
-                    let keyBytes = rawBufferPointer.baseAddress!
-                    status = CCCrypt(
-                        operation.value,    // operation
-                        algorithm,          // algorithm
-                        currentPadding,     // options
-                        keyBytes,           // key
-                        key.count,          // keylength
-                        ivBytes,            // iv
-                        encryptedBytes,     // dataIn
-                        input.count,        // dataInLength
-                        &outBytes,          // dataOut
-                        outBytes.count,     // dataOutAvailable
-                        &outLength)         // dataOutMoved
-                }
-            }
-        }
-        
-        guard status == kCCSuccess else { throw Error.cryptoFailed(status: status) }
-        
-        return Data(bytes: &outBytes, count: outLength)
-    }
-    
-    // MARK: - Obj-c Helper function
-    @objc public func encrypt(str: String) -> String? {
-        return encrypt(str: str, encoding: .utf8)
-    }
-    
-    private enum AESOperation: CCOperation {
-        case encrypt
-        case deccrypt
-        
-        var value: CCOperation {
-            switch self {
-            case .encrypt:
-                return CCOperation(kCCEncrypt)
-            case .deccrypt:
-                return CCOperation(kCCDecrypt)
-            }
-        }
+    public func final() -> [UInt8]? {
+        let byteCount = Int(self.getOutputLength(inputByteCount: 0, isFinal: true))
+        var dataOut = Array<UInt8>(repeating: 0, count:byteCount)
+        var dataOutMoved = 0
+        dataOutMoved = final(byteArrayOut: &dataOut)
+        accumulator += dataOut[0..<Int(dataOutMoved)]
+        return accumulator
     }
 }

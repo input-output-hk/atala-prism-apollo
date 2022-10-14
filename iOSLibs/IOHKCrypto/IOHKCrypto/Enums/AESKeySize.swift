@@ -31,7 +31,7 @@ import CommonCrypto
         case kCCKeySizeAES256:
             return .aes256
         default:
-            throw Error.badKeyLength
+            throw Error.invalidKeySize
         }
     }
 }

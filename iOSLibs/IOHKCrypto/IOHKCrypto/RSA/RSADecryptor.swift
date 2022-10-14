@@ -36,7 +36,7 @@ import Foundation
     @objc public func decrypt(data: Data) -> Data? {
         let cfData = data as CFData
         var error: Unmanaged<CFError>?
-        guard let decryptedData = SecKeyCreateDecryptedData(privateKey, type.value, cfData, &error) as Data? else {
+        guard let decryptedData = SecKeyCreateDecryptedData(privateKey, type.nativeValue, cfData, &error) as Data? else {
             return nil
         }
         return decryptedData

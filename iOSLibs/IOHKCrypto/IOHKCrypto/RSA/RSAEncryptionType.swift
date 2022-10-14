@@ -21,7 +21,7 @@ import Foundation
     case rsaOAEPSHA384AESGCM
     case rsaOAEPSHA512AESGCM
     
-    var value: SecKeyAlgorithm {
+    var nativeValue: SecKeyAlgorithm {
         switch self {
         case .rsaEncryption:
             return .rsaEncryptionRaw

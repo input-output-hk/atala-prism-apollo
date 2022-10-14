@@ -13,61 +13,64 @@ class AES256Tests: XCTestCase {
     
     var sourceData: Data!
     var password: String!
-    var salt: Data!
+    var salt: String!
     var iv: Data!
     var key: Data!
-    var aes: AES!
+    var aesEncryptor: AESEncryptor!
+    var aesDecryptor: AESDecryptor!
     var sourcedString: String!
     
     override func setUp() {
         super.setUp()
         do {
             sourcedString = "+93654HJU)(ˆ% Hello AES256"
+            
             sourceData = sourcedString.data(using: .utf8)!
             password = "password"
             // print(sourceData.base64EncodedData())
-            salt = Utilities.randomSalt(length: 8)
+            salt = Utilities.randomString(length: 8)
             iv = Utilities.randomIv(length: kCCBlockSizeAES128)
-            key = try Utilities.generateKey(varient: .aes256, password: password.data(using: .utf8)!, salt: salt)
-            aes = try AES(key: key, varient: .aes256, mode: .cbc, iv: iv, padding: .pkcs7Padding)
+            key = try Utilities.generateAESKey(algorithm: .aes256, password: password, salt: salt)
+            aesEncryptor = try AESEncryptor(algorithm: .aes256, options: .pkcs7Padding, mode: .cbc, padding: .pkcs7Padding, key: key, iv: iv)
+            aesDecryptor = try AESDecryptor(algorithm: .aes256, options: .pkcs7Padding, mode: .cbc, padding: .pkcs7Padding, key: key, iv: iv)
         } catch let error {
             XCTFail(error.localizedDescription)
         }
     }
     
-    func test_encrypt_parametersData_returnData(){
-        let encryptedData: Data? = aes.encrypt(data: sourceData)
-        let decryptedData: Data? = aes.decrypt(data: encryptedData!)
+    func test_encrypt_parametersData_returnData() {
+        let encryptedData: Data? = aesEncryptor.encrypt(data: sourceData)
+        let decryptedData: Data? = aesDecryptor.decrypt(data: encryptedData!)
         XCTAssertEqual(sourceData, decryptedData)
     }
     
-    func test_encrypt_parametersStringAndEncoding_returnString(){
-        let encryptedString: String? = aes.encrypt(str: sourcedString, encoding: .utf8)
-        let decryptedString: String? = aes.decrypt(str: encryptedString!, encoding: .utf8)
+    func test_encrypt_parametersStringAndEncoding_returnString() {
+        let encryptedString: String? = aesEncryptor.encrypt(str: sourcedString, encoding: .utf8)
+        let decryptedString: String? = aesDecryptor.decrypt(str: encryptedString!, encoding: .utf8)
         XCTAssertEqual(sourcedString, decryptedString)
     }
     
-    func test_encrypt_parametersStringAndEncoding_returnData(){
-        let encryptedData: Data? = aes.encrypt(str: sourcedString, encoding: .utf8)
-        let decryptedData: Data? = aes.decrypt(data: encryptedData!)
+    func test_encrypt_parametersStringAndEncoding_returnData() {
+        let encryptedData: Data? = aesEncryptor.encrypt(str: sourcedString, encoding: .utf8)
+        let decryptedData: Data? = aesDecryptor.decrypt(data: encryptedData!)
         XCTAssertEqual(sourceData , decryptedData)
     }
     
-    func test_decrypt_parametersData_returnData(){
-        let encryptedData: Data? = aes.encrypt(data: sourceData)
-        let decryptedData: Data? = aes.decrypt(data: encryptedData!)
+    func test_decrypt_parametersData_returnData() {
+        let encryptedData: Data? = aesEncryptor.encrypt(data: sourceData)
+        let decryptedData: Data? = aesDecryptor.decrypt(data: encryptedData!)
         XCTAssertEqual(sourceData, decryptedData)
     }
     
-    func test_decrypt_parametersString_returnData(){
-        let encryptedString: String? = aes.encrypt(str: sourcedString, encoding: .utf8)
-        let decryptedData: Data? = aes.decrypt(str: encryptedString!)
+    func test_decrypt_parametersString_returnData() {
+        let encryptedString: String? = aesEncryptor.encrypt(str: sourcedString, encoding: .utf8)
+        let decryptedData: Data? = aesDecryptor.decrypt(str: encryptedString!)
         XCTAssertEqual(sourceData, decryptedData)
     }
     
-    func test_decrypt_parametersStringAndEncoding_returnString(){
-        let encryptedString: String? = aes.encrypt(str: sourcedString, encoding: .utf8)
-        let decryptedString: String? = aes.decrypt(str: encryptedString!, encoding: .utf8)
+    func test_decrypt_parametersStringAndEncoding_returnString() {
+        let encryptedString: String? = aesEncryptor.encrypt(str: sourcedString, encoding: .utf8)
+        let decryptedString: String? = aesDecryptor.decrypt(str: encryptedString!, encoding: .utf8)
         XCTAssertEqual(sourcedString, decryptedString)
     }
 }

@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
     # s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'Ahmed Moussa' => 'moussa.ahmed95@gmail.com' }
     s.source           = { :git => 'https://github.com/input-output-hk/atala-prism-apollo.git', :tag => s.version.to_s }
-    s.swift_version = '5.0'
+    s.swift_version = '5.7'
     s.cocoapods_version = '>= 1.10.0'
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
     

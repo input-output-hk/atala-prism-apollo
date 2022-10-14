@@ -32,7 +32,7 @@ import Foundation
     @objc public func encrypt(data: Data) -> Data? {
         let cfData = data as CFData
         var error: Unmanaged<CFError>?
-        guard let cipherText = SecKeyCreateEncryptedData(publicKey, type.value, cfData, &error) as Data? else {
+        guard let cipherText = SecKeyCreateEncryptedData(publicKey, type.nativeValue, cfData, &error) as Data? else {
             return nil
         }
         return cipherText

@@ -12,7 +12,8 @@ public enum Error: Swift.Error {
     case keyGeneration(status: Int)
     case cryptoFailed(status: CCCryptorStatus)
     case cryptoFailed(description: String)
-    case badKeyLength
+    case invalidKeySize
+    case invalidIVSizeOrLength
     case wrongVarientProvided
     case badInputVectorLength
 }
