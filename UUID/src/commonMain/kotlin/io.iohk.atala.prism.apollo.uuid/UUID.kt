@@ -1,7 +1,7 @@
 package io.iohk.atala.prism.apollo.uuid
 
-import io.iohk.prism.hashing.MD5
-import io.iohk.prism.hashing.SHA1
+import io.iohk.prism.apollo.hashing.MD5
+import io.iohk.prism.apollo.hashing.SHA1
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlin.jvm.JvmStatic
