@@ -11,7 +11,7 @@ import CommonCrypto
 ///
 /// Enumerates available algorithms
 ///
-@objc public enum Algorithm: Int {
+@objc public enum AESAlgorithm: Int {
     
     /// Advanced Encryption Standard
     /// - Note: aes and aes128 are equivalent.
@@ -49,7 +49,6 @@ import CommonCrypto
     /// Tests if a given keySize is valid for this algorithm
     ///
     /// - Parameter keySize: The key size to be validated.
-    ///
     /// - Returns: True if valid, false otherwise.
     ///
     public func isValidKeySize(keySize: Int) -> Bool {
@@ -60,7 +59,6 @@ import CommonCrypto
     /// Calculates the next, if any, valid keySize greater or equal to a given `keySize` for this algorithm
     ///
     /// - Parameter keySize: Key size for which the next size is requested.
-    ///
     /// - Returns: Next key size or nil
     ///
     public func paddedKeySize(keySize: Int) -> Int? {

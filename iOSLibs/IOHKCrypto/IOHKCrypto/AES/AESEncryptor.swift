@@ -15,7 +15,7 @@ import CryptoKit
     ///
     private var haveContext: Bool = false
     
-    @objc public private (set) var algorithm: Algorithm
+    @objc public private (set) var algorithm: AESAlgorithm
     @objc public private (set) var options: AESOptions
     @objc public private (set) var mode: BlockMode
     @objc public private (set) var key: [UInt8]
@@ -45,7 +45,7 @@ import CryptoKit
         haveContext = false
     }
     
-    private init(algorithm: Algorithm, options: AESOptions, mode: BlockMode, padding: Padding, key: [UInt8], keyLength: Int, iv: UnsafePointer<UInt8>, ivLength: Int) throws {
+    private init(algorithm: AESAlgorithm, options: AESOptions, mode: BlockMode, padding: Padding, key: [UInt8], keyLength: Int, iv: UnsafePointer<UInt8>, ivLength: Int) throws {
         guard algorithm.isValidKeySize(keySize: keyLength) else {
             throw Error.invalidKeySize
         }
@@ -78,11 +78,10 @@ import CryptoKit
         )
         
         guard rawStatus == kCCSuccess else { throw Error.cryptoFailed(status: rawStatus) }
-        
         self.haveContext = true
     }
     
-    @objc public convenience init(algorithm: Algorithm, options: AESOptions, mode: BlockMode, padding: Padding, key: Data, iv: Data) throws {
+    @objc public convenience init(algorithm: AESAlgorithm, options: AESOptions, mode: BlockMode, padding: Padding, key: Data, iv: Data) throws {
         guard let paddedKeySize = algorithm.paddedKeySize(keySize: key.count) else {
             throw Error.invalidKeySize
         }
@@ -95,7 +94,7 @@ import CryptoKit
             options: options,
             mode: mode,
             padding: padding,
-            key: Utilities.zeroPad(byteArray: keyBytes, blockSize: paddedKeySize),
+            key: AESBase.zeroPad(byteArray: keyBytes, blockSize: paddedKeySize),
             keyLength: paddedKeySize,
             iv: ivBytes,
             ivLength: iv.count

@@ -27,9 +27,15 @@
 		B512F7FD28F8A80C0091C308 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F7FC28F8A80C0091C308 /* AES.swift */; };
 		B512F7FF28F8A9D70091C308 /* IOHKCrypto.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B512F7FE28F8A9D70091C308 /* IOHKCrypto.podspec */; };
 		B512F80128F8E01E0091C308 /* AESEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F80028F8E01E0091C308 /* AESEncryptor.swift */; };
-		B512F80328F8E1E60091C308 /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F80228F8E1E60091C308 /* Algorithm.swift */; };
+		B512F80328F8E1E60091C308 /* AESAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F80228F8E1E60091C308 /* AESAlgorithm.swift */; };
 		B512F80528F8E2CE0091C308 /* AESOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F80428F8E2CE0091C308 /* AESOptions.swift */; };
 		B512F80728F8EDA10091C308 /* AESDecryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512F80628F8EDA10091C308 /* AESDecryptor.swift */; };
+		B52FA21928FEC67100DE6566 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA21828FEC67100DE6566 /* StringExt.swift */; };
+		B52FA21B28FEC71F00DE6566 /* IOHKCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA21A28FEC71F00DE6566 /* IOHKCrypto.swift */; };
+		B52FA22128FF171000DE6566 /* RSASigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA22028FF171000DE6566 /* RSASigner.swift */; };
+		B52FA22328FF798B00DE6566 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA22228FF798B00DE6566 /* Signer.swift */; };
+		B52FA22528FF799200DE6566 /* Verifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA22428FF799200DE6566 /* Verifier.swift */; };
+		B52FA22728FF7AF800DE6566 /* RSASignatureMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA22628FF7AF800DE6566 /* RSASignatureMessageType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +71,15 @@
 		B512F7FC28F8A80C0091C308 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		B512F7FE28F8A9D70091C308 /* IOHKCrypto.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = IOHKCrypto.podspec; sourceTree = "<group>"; };
 		B512F80028F8E01E0091C308 /* AESEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESEncryptor.swift; sourceTree = "<group>"; };
-		B512F80228F8E1E60091C308 /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
+		B512F80228F8E1E60091C308 /* AESAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESAlgorithm.swift; sourceTree = "<group>"; };
 		B512F80428F8E2CE0091C308 /* AESOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESOptions.swift; sourceTree = "<group>"; };
 		B512F80628F8EDA10091C308 /* AESDecryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESDecryptor.swift; sourceTree = "<group>"; };
+		B52FA21828FEC67100DE6566 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		B52FA21A28FEC71F00DE6566 /* IOHKCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOHKCrypto.swift; sourceTree = "<group>"; };
+		B52FA22028FF171000DE6566 /* RSASigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSASigner.swift; sourceTree = "<group>"; };
+		B52FA22228FF798B00DE6566 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
+		B52FA22428FF799200DE6566 /* Verifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verifier.swift; sourceTree = "<group>"; };
+		B52FA22628FF7AF800DE6566 /* RSASignatureMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSASignatureMessageType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +132,8 @@
 				B512F7E428F8A7300091C308 /* Error.swift */,
 				B512F7E628F8A7450091C308 /* typealias.swift */,
 				B512F7E828F8A7530091C308 /* Utilities.swift */,
+				B52FA21828FEC67100DE6566 /* StringExt.swift */,
+				B52FA21A28FEC71F00DE6566 /* IOHKCrypto.swift */,
 			);
 			path = IOHKCrypto;
 			sourceTree = "<group>";
@@ -140,7 +154,7 @@
 				B512F7EA28F8A7670091C308 /* AESKeySize.swift */,
 				B512F7EE28F8A7860091C308 /* BlockMode.swift */,
 				B512F7EC28F8A7760091C308 /* Padding.swift */,
-				B512F80228F8E1E60091C308 /* Algorithm.swift */,
+				B512F80228F8E1E60091C308 /* AESAlgorithm.swift */,
 				B512F80428F8E2CE0091C308 /* AESOptions.swift */,
 			);
 			path = Enums;
@@ -152,6 +166,8 @@
 				B512F7F028F8A79B0091C308 /* Decryptor.swift */,
 				B512F7F228F8A7AB0091C308 /* Encryptor.swift */,
 				B512F7F428F8A7B70091C308 /* Cryptor.swift */,
+				B52FA22228FF798B00DE6566 /* Signer.swift */,
+				B52FA22428FF799200DE6566 /* Verifier.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -160,8 +176,10 @@
 			isa = PBXGroup;
 			children = (
 				B512F7FA28F8A7F30091C308 /* RSAEncryptionType.swift */,
+				B52FA22628FF7AF800DE6566 /* RSASignatureMessageType.swift */,
 				B512F7F828F8A7DD0091C308 /* RSAEncryptor.swift */,
 				B512F7F628F8A7CB0091C308 /* RSADecryptor.swift */,
+				B52FA22028FF171000DE6566 /* RSASigner.swift */,
 			);
 			path = RSA;
 			sourceTree = "<group>";
@@ -289,18 +307,24 @@
 			files = (
 				B512F80528F8E2CE0091C308 /* AESOptions.swift in Sources */,
 				B512F7EF28F8A7860091C308 /* BlockMode.swift in Sources */,
-				B512F80328F8E1E60091C308 /* Algorithm.swift in Sources */,
+				B512F80328F8E1E60091C308 /* AESAlgorithm.swift in Sources */,
 				B512F7F928F8A7DD0091C308 /* RSAEncryptor.swift in Sources */,
 				B512F80128F8E01E0091C308 /* AESEncryptor.swift in Sources */,
 				B512F7FB28F8A7F30091C308 /* RSAEncryptionType.swift in Sources */,
 				B512F7E528F8A7300091C308 /* Error.swift in Sources */,
 				B512F7EB28F8A7670091C308 /* AESKeySize.swift in Sources */,
+				B52FA22528FF799200DE6566 /* Verifier.swift in Sources */,
 				B512F7FD28F8A80C0091C308 /* AES.swift in Sources */,
+				B52FA22728FF7AF800DE6566 /* RSASignatureMessageType.swift in Sources */,
 				B512F7E728F8A7450091C308 /* typealias.swift in Sources */,
+				B52FA21B28FEC71F00DE6566 /* IOHKCrypto.swift in Sources */,
 				B512F80728F8EDA10091C308 /* AESDecryptor.swift in Sources */,
 				B512F7F328F8A7AB0091C308 /* Encryptor.swift in Sources */,
+				B52FA22128FF171000DE6566 /* RSASigner.swift in Sources */,
 				B512F7E928F8A7530091C308 /* Utilities.swift in Sources */,
+				B52FA21928FEC67100DE6566 /* StringExt.swift in Sources */,
 				B512F7F728F8A7CB0091C308 /* RSADecryptor.swift in Sources */,
+				B52FA22328FF798B00DE6566 /* Signer.swift in Sources */,
 				B512F7C428F8A6160091C308 /* IOHKCrypto.docc in Sources */,
 				B512F7F528F8A7B70091C308 /* Cryptor.swift in Sources */,
 				B512F7F128F8A79B0091C308 /* Decryptor.swift in Sources */,

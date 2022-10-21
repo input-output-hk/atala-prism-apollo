@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 class HmacMD2Tests : BaseHmacHashTests() {
 
     override fun hash(key: ByteArray, stringToHash: ByteArray, outputLength: Int?): String {
-        val hash = io.iohk.prism.apollo.hashing.MD2().createHmac(key, outputLength)
+        val hash = MD2().createHmac(key, outputLength)
         return hash.digest(stringToHash).toHexString()
     }
 

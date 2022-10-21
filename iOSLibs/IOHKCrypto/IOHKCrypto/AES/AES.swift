@@ -9,7 +9,6 @@ import Foundation
 import CommonCrypto
 import CryptoKit
 
-
 public protocol AESProtocol {
     /// CommonCrypto Context
     var context: UnsafeMutablePointer<CCCryptorRef?> { get }
@@ -116,20 +115,6 @@ public protocol AESProtocol {
     /// - Returns: The final output length
     ///
     func getOutputLength(inputByteCount: Int, isFinal: Bool) -> Int
-    
-//    private enum AESOperation: CCOperation {
-//        case encrypt
-//        case deccrypt
-//
-//        var value: CCOperation {
-//            switch self {
-//            case .encrypt:
-//                return CCOperation(kCCEncrypt)
-//            case .deccrypt:
-//                return CCOperation(kCCDecrypt)
-//            }
-//        }
-//    }
 }
 
 extension AESProtocol {
@@ -201,5 +186,22 @@ extension AESProtocol {
         dataOutMoved = final(byteArrayOut: &dataOut)
         accumulator += dataOut[0..<Int(dataOutMoved)]
         return accumulator
+    }
+    
+    ///
+    /// Zero pads a byte array such that it is an integral number of `blockSizeinBytes` long.
+    ///
+    /// - Parameters:
+    ///    - byteArray:         The byte array
+    ///     - blockSizeInBytes: The block size in bytes.
+    ///
+    /// - Returns: A Swift string
+    ///
+    public class func zeroPad(byteArray: [UInt8], blockSize: Int) -> [UInt8] {
+        let pad = blockSize - (byteArray.count % blockSize)
+        guard pad != 0 else {
+            return byteArray
+        }
+        return byteArray + Array<UInt8>(repeating: 0, count: pad)
     }
 }

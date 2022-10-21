@@ -16,4 +16,12 @@ public enum Error: Swift.Error {
     case invalidIVSizeOrLength
     case wrongVarientProvided
     case badInputVectorLength
+    case invalidPEM
+    case invalidBase64PEMData
+    case invalidPublicKey
+    case invalidASN1Key
+    case invalidKeyX509Header
+    case invalidKeyData
+    case base64DecodeFailed
+    case createCertificateFromDataFailed
 }

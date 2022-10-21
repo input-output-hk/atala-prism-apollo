@@ -15,4 +15,9 @@ sealed class JWTError(message: String?) : Exception(message) {
      * Error when an invalid private key is provided for RSA encryption.
      */
     final class InvalidPrivateKey(message: String? = "Provided private key could not be used to sign JWT") : JWTError(message)
+
+    /**
+     * Error when couldn't extract key from PEM
+     */
+    final class InvalidPEM(message: String? = "Couldn't get data from PEM key: no data available after stripping headers") : JWTError(message)
 }
