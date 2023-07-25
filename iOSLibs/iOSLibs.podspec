@@ -1,12 +1,12 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'base_asymmetric_encryption'
+    spec.name                     = 'iOSLibs'
     spec.version                  = '1.7.0-alpha'
     spec.homepage                 = ''
     spec.source                   = { :http=> ''}
     spec.authors                  = 'IOG'
     spec.license                  = ''
     spec.summary                  = 'ApolloBaseAsymmetricEncryption is a base for symmetric encryption libs'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/ApolloBaseAsymmetricEncryption.framework'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/ApolloIOSLibs.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '13.0'
     spec.osx.deployment_target = '12.0'
@@ -17,13 +17,13 @@ Pod::Spec.new do |spec|
     spec.dependency 'IOHKSecureRandomGeneration', '1.0.0'
                 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':base-asymmetric-encryption',
-        'PRODUCT_MODULE_NAME' => 'ApolloBaseAsymmetricEncryption',
+        'KOTLIN_PROJECT_PATH' => ':iOSLibs',
+        'PRODUCT_MODULE_NAME' => 'ApolloIOSLibs',
     }
                 
     spec.script_phases = [
         {
-            :name => 'Build base_asymmetric_encryption',
+            :name => 'Build iOSLibs',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
