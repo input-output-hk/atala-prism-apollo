@@ -15,7 +15,7 @@ import kotlin.js.JsName
  */
 @OptIn(ExperimentalJsExport::class)
 @JsExport
-class HDKey(
+public class HDKey(
     val privateKey: ByteArray? = null,
     val publicKey: ByteArray? = null,
     val chainCode: ByteArray? = null,
@@ -24,7 +24,7 @@ class HDKey(
 ) {
 
     @JsName("InitFromSeed")
-    constructor(seed: ByteArray, depth: Int, childIndex: BigInteger) : this(
+    public constructor(seed: ByteArray, depth: Int, childIndex: BigInteger) : this(
         privateKey = sha512(key = "Bitcoin seed".encodeToByteArray(), input = seed).sliceArray(IntRange(0, 31)),
         chainCode = sha512("Bitcoin seed".encodeToByteArray(), seed).sliceArray(32 until seed.size),
         depth = depth,
@@ -40,7 +40,7 @@ class HDKey(
      *
      * @param path value used to derive a key
      */
-    fun derive(path: String): HDKey {
+    public fun derive(path: String): HDKey {
         if (!path.matches(Regex("^[mM].*"))) {
             throw Error("Path must start with \"m\" or \"M\"")
         }
@@ -69,7 +69,7 @@ class HDKey(
      *
      * @param index value used to derive a key
      */
-    fun deriveChild(index: BigInteger): HDKey {
+    public fun deriveChild(index: BigInteger): HDKey {
         if (chainCode == null) {
             throw Exception("No chainCode set")
         }
@@ -110,7 +110,7 @@ class HDKey(
         }
     }
 
-    fun getKMMSecp256k1PrivateKey(): KMMECSecp256k1PrivateKey {
+    public fun getKMMSecp256k1PrivateKey(): KMMECSecp256k1PrivateKey {
         privateKey?.let {
             return KMMECSecp256k1PrivateKey.secp256k1FromByteArray(privateKey)
         } ?: throw Exception("Private key not available")

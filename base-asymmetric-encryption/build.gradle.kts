@@ -7,7 +7,6 @@ val os: OperatingSystem = OperatingSystem.current()
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
     id("com.android.library")
     id("org.jetbrains.dokka")
@@ -89,36 +88,39 @@ kotlin {
         outputDirectory(File(rootDir, "base-asymmetric-encryption/build/packages/ApolloSwift"))
     }
 
-    if (os.isMacOsX) {
-        cocoapods {
-            this.summary = "ApolloBaseAsymmetricEncryption is a base for symmetric encryption libs"
-            this.version = rootProject.version.toString()
-            this.authors = "IOG"
-            this.ios.deploymentTarget = "13.0"
-            this.osx.deploymentTarget = "12.0"
-            this.tvos.deploymentTarget = "13.0"
-            this.watchos.deploymentTarget = "8.0"
-            framework {
-                this.baseName = currentModuleName
-            }
-
-            pod("IOHKRSA") {
-                version = "1.0.0"
-                source = path(project.file("../iOSLibs/IOHKRSA"))
-            }
-
-            pod("IOHKSecureRandomGeneration") {
-                version = "1.0.0"
-                packageName = "IOHKSecureRandomGeneration1"
-                source = path(project.file("../iOSLibs/IOHKSecureRandomGeneration"))
-            }
-
-            pod("IOHKCryptoKit") {
-                version = "1.0.0"
-                source = path(project.file("../iOSLibs/IOHKCryptoKit"))
-            }
-        }
-    }
+//    if (os.isMacOsX) {
+//        cocoapods {
+//            this.summary = "ApolloBaseAsymmetricEncryption is a base for symmetric encryption libs"
+//            this.version = rootProject.version.toString()
+//            this.authors = "IOG"
+//            this.ios.deploymentTarget = "13.0"
+//            this.osx.deploymentTarget = "12.0"
+//            this.tvos.deploymentTarget = "13.0"
+//            this.watchos.deploymentTarget = "8.0"
+//            framework {
+//                this.baseName = currentModuleName
+//                isStatic = false
+//                transitiveExport = false
+//                embedBitcode("disable")
+//            }
+//
+//            pod("IOHKRSA") {
+//                version = "1.0.0"
+//                source = path(project.file("../iOSLibs/IOHKRSA"))
+//            }
+//
+//            pod("IOHKSecureRandomGeneration") {
+//                version = "1.0.0"
+//                packageName = "IOHKSecureRandomGeneration1"
+//                source = path(project.file("../iOSLibs/IOHKSecureRandomGeneration"))
+//            }
+//
+//            pod("IOHKCryptoKit") {
+//                version = "1.0.0"
+//                source = path(project.file("../iOSLibs/IOHKCryptoKit"))
+//            }
+//        }
+//    }
 
     sourceSets {
         val commonMain by getting {
@@ -192,6 +194,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(project(":secp256k1-kmp"))
+                implementation(project(":iOSLibs"))
             }
         }
 
@@ -296,26 +299,26 @@ ktlint {
 }
 
 // TODO(Investigate why the below tasks fails)
-tasks.matching {
-    fun String.isOneOf(values: List<String>): Boolean {
-        for (value in values) {
-            if (this == value) {
-                return true
-            }
-        }
-        return false
-    }
-
-    it.name.isOneOf(
-        listOf(
-            "linkPodReleaseFrameworkIosFat",
-            ":linkPodReleaseFrameworkIosFat",
-            ":base-asymmetric-encryption:linkPodReleaseFrameworkIosFat",
-            "linkPodDebugFrameworkIosFat",
-            ":linkPodDebugFrameworkIosFat",
-            ":base-asymmetric-encryption:linkPodDebugFrameworkIosFat"
-        )
-    )
-}.all {
-    this.enabled = false
-}
+// tasks.matching {
+//    fun String.isOneOf(values: List<String>): Boolean {
+//        for (value in values) {
+//            if (this == value) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
+//
+//    it.name.isOneOf(
+//        listOf(
+//            "linkPodReleaseFrameworkIosFat",
+//            ":linkPodReleaseFrameworkIosFat",
+//            ":base-asymmetric-encryption:linkPodReleaseFrameworkIosFat",
+//            "linkPodDebugFrameworkIosFat",
+//            ":linkPodDebugFrameworkIosFat",
+//            ":base-asymmetric-encryption:linkPodDebugFrameworkIosFat"
+//        )
+//    )
+// }.all {
+//    this.enabled = false
+// }
