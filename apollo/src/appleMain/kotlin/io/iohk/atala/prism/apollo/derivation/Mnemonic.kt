@@ -12,6 +12,7 @@ final class Mnemonic {
             return MnemonicHelper.createRandomMnemonics()
         }
 
+        @Throws(MnemonicHelper.Companion.InvalidMnemonicCode::class)
         fun createSeed(mnemonics: List<String>, passphrase: String = "AtalaPrism"): ByteArray {
             return MnemonicHelper.createSeed(mnemonics.toList(), passphrase)
         }
