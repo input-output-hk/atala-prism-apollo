@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
-import java.util.Base64
+//import java.util.Base64
 
 val publishedMavenId: String = "io.iohk.atala.prism.apollo"
 
@@ -10,7 +10,7 @@ plugins {
     id("maven-publish")
     id("org.jetbrains.kotlinx.kover") version "0.7.4"
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0-rc-1"
-    id("signing")
+//    id("signing")
 }
 
 buildscript {
@@ -130,12 +130,12 @@ allprojects {
                             url.set("https://github.com/input-output-hk/atala-prism-apollo")
                         }
                     }
-                    signing {
-                        val base64EncodedAsciiArmoredSigningKey: String = System.getenv("BASE64_ARMORED_GPG_SIGNING_KEY_MAVEN") ?: ""
-                        val signingKeyPassword: String = System.getenv("SIGNING_KEY_PASSWORD") ?: ""
-                        useInMemoryPgpKeys(String(Base64.getDecoder().decode(base64EncodedAsciiArmoredSigningKey.toByteArray())), signingKeyPassword)
-                        sign(this@withType)
-                    }
+//                    signing {
+//                        val base64EncodedAsciiArmoredSigningKey: String = System.getenv("BASE64_ARMORED_GPG_SIGNING_KEY_MAVEN") ?: ""
+//                        val signingKeyPassword: String = System.getenv("SIGNING_KEY_PASSWORD") ?: ""
+//                        useInMemoryPgpKeys(String(Base64.getDecoder().decode(base64EncodedAsciiArmoredSigningKey.toByteArray())), signingKeyPassword)
+//                        sign(this@withType)
+//                    }
                 }
             }
             repositories {
