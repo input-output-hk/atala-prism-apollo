@@ -12,4 +12,10 @@ class KMMX25519KeyPairTests {
         assertNotNull(keyPair.privateKey)
         assertNotNull(keyPair.publicKey)
     }
+
+    @Test
+    fun testGetPublicKeyFromPrivateKey() {
+        val privateKey = KMMX25519KeyPair.generateKeyPair().privateKey
+        assertNotNull(privateKey.publicKey())
+    }
 }

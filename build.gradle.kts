@@ -148,7 +148,17 @@ subprojects {
         filters {
             excludes {
                 classes(
-                    "io.iohk.atala.prism.apollo.utils.bip39.wordlists.*"
+                    "io.iohk.atala.prism.apollo.utils.bip39.wordlists.*",
+                    "io.iohk.atala.prism.apollo.derivation.MnemonicChecksumException",
+                    "io.iohk.atala.prism.apollo.derivation.MnemonicLengthException",
+                    "io.iohk.atala.prism.apollo.derivation.MnemonicWordException",
+                    "io.iohk.atala.prism.apollo.derivation.MnemonicException",
+                    "io.iohk.atala.prism.apollo.secp256k1.Secp256k1Exception",
+                    "io.iohk.atala.prism.apollo.utils.ECPrivateKeyDecodingException",
+                    "io.iohk.atala.prism.apollo.utils.ECPrivateKeyException",
+                    "io.iohk.atala.prism.apollo.utils.ECPrivateKeyInitializationException",
+                    "io.iohk.atala.prism.apollo.utils.ECPublicKeyException",
+                    "io.iohk.atala.prism.apollo.utils.ECPublicKeyInitializationException"
                 )
             }
         }

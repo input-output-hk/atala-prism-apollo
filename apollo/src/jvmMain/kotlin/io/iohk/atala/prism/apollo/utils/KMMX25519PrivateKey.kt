@@ -13,7 +13,7 @@ actual class KMMX25519PrivateKey(val raw: ByteArray) {
      *
      * @return A `KMMX25519PublicKey` object representing the generated public key.
      */
-    fun publicKey(): KMMX25519PublicKey {
+    actual fun publicKey(): KMMX25519PublicKey {
         val private = X25519PrivateKeyParameters(raw, 0)
         val public = private.generatePublicKey()
         return KMMX25519PublicKey(public.encoded)

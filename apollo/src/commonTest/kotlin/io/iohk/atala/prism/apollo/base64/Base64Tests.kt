@@ -3,6 +3,7 @@ package io.iohk.atala.prism.apollo.base64
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class Base64Tests {
     // Extension
@@ -190,5 +191,79 @@ class Base64Tests {
     @Test
     fun testEncodeBase16RFC_4648_6() {
         assertEquals("Zm9vYmFy", "foobar".base64PadEncoded)
+    }
+
+    @Test
+    fun testStringBase64Encoded() {
+        assertEquals("aGVsbG8", "hello".base64Encoded)
+    }
+
+    @Test
+    fun testStringBase64Decoded() {
+        assertEquals("hello", "aGVsbG8".base64Decoded)
+    }
+
+    @Test
+    fun testStringBase64UrlPadEncoded() {
+        assertEquals("aGVsbG8=", "hello".base64UrlPadEncoded)
+    }
+
+    @Test
+    fun testByteArrayBase64Encoded() {
+        assertEquals(
+            "SGVsbG8gd29ybGQh",
+            "Hello world!".encodeToByteArray().base64Encoded
+        )
+    }
+
+    @Test
+    fun testByteArrayBase64Decoded() {
+        assertEquals(
+            "Hello world!",
+            "SGVsbG8gd29ybGQh".encodeToByteArray().base64Decoded
+        )
+    }
+
+    @Test
+    fun testByteArrayBase64PadDecoded() {
+        assertEquals(
+            "Hello world!",
+            "SGVsbG8gd29ybGQh".encodeToByteArray().base64PadDecoded
+        )
+    }
+
+    @Test
+    fun testByteArrayBase64UrlDecoded() {
+        assertEquals(
+            "Hello, world!",
+            "SGVsbG8sIHdvcmxkIQ==".encodeToByteArray().base64UrlDecoded
+        )
+    }
+
+    @Test
+    fun testByteArrayBase64UrlPadEncoded() {
+        assertEquals(
+            "aGVsbG8=",
+            "hello".encodeToByteArray().base64UrlPadEncoded
+        )
+    }
+
+    @Test
+    fun asCharArrayShouldReturnEmptyCharArrayForEmptyByteArray() {
+        val byteArray: ByteArray = byteArrayOf()
+        val charArray = byteArray.asCharArray()
+
+        assertEquals(0, charArray.size)
+    }
+
+    @Test
+    fun asCharArrayShouldReturnCorrectCharArrayForVariousByteArray() {
+        val byteArray: ByteArray = byteArrayOf(72, 101, 108, 108, 111) // ASCII values for "Hello"
+        val charArray = byteArray.asCharArray()
+        val expectedCharArray: CharArray = charArrayOf('H', 'e', 'l', 'l', 'o')
+
+        assertTrue {
+            charArray contentEquals expectedCharArray
+        }
     }
 }

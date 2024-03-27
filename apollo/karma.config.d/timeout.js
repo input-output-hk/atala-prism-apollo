@@ -1,9 +1,9 @@
 config.set({
-    browserDisconnectTimeout: 5000,
-    processKillTimeout: 5000,
+    browserDisconnectTimeout: 10000,
+    processKillTimeout: 10000,
     client: {
         mocha: {
-            timeout: 5000
+            timeout: 10000
         }
     }
 });

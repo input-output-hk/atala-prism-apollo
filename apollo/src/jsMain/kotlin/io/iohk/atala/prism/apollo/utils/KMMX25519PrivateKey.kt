@@ -31,7 +31,7 @@ actual class KMMX25519PrivateKey(bytes: ByteArray) {
      * PublicKey associated with this PrivateKey
      * @return KMMX25519PublicKey
      */
-    fun publicKey(): KMMX25519PublicKey {
+    actual fun publicKey(): KMMX25519PublicKey {
         val publicBytes = getInstance().publicKey.buffer.toByteArray()
 
         return KMMX25519PublicKey(publicBytes)

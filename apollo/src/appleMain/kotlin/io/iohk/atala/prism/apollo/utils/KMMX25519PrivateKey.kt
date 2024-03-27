@@ -25,7 +25,7 @@ actual class KMMX25519PrivateKey(val raw: ByteArray) {
      * @throws RuntimeException if there is an error generating the public key.
      */
     @Throws(RuntimeException::class)
-    public fun publicKey(): KMMX25519PublicKey {
+    public actual fun publicKey(): KMMX25519PublicKey {
         val result = X25519.publicKeyWithPrivateKey(raw.toNSData())
         result.failure()?.let { throw RuntimeException(it.localizedDescription()) }
         val publicRaw = result.success()?.toByteArray() ?: throw RuntimeException("Null result")
