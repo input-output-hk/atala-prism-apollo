@@ -3,7 +3,6 @@ package io.iohk.atala.prism.apollo.derivation
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import com.ionspin.kotlin.bignum.integer.toBigInteger
 import io.iohk.atala.prism.apollo.utils.ECConfig
-import io.iohk.atala.prism.apollo.utils.ECPrivateKeyDecodingException
 import io.iohk.atala.prism.apollo.utils.KMMECSecp256k1PrivateKey
 import org.kotlincrypto.macs.hmac.sha2.HmacSHA512
 import kotlin.js.ExperimentalJsExport
@@ -133,26 +132,13 @@ class HDKey(
      * @param path value used to derive a key
      */
     fun derive(path: String): HDKey {
-        if (!path.matches(Regex("^[mM].*"))) {
-            throw Error("Path must start with \"m\" or \"M\"")
-        }
-        if (Regex("^[mM]'?$").matches(path)) {
-            return this
-        }
-        val parts = path.replace(Regex("^[mM]'?/"), "").split("/")
+        val indexes = pathToIndexes(path)
         var child = this
-        for (c in parts) {
-            val m = Regex("^(\\d+)('?)$").find(c)?.groupValues
-            if (m == null || m.size != 3) {
-                throw Error("Invalid child index: $c")
-            }
-            val idx = m[1].toBigInteger()
-            if (idx >= HARDENED_OFFSET) {
-                throw Error("Invalid index")
-            }
-            val finalIdx = if (m[2] == "'") idx + HARDENED_OFFSET else idx
-            child = child.deriveChild(BigIntegerWrapper(finalIdx))
+
+        for (i in indexes) {
+            child = child.deriveChild(BigIntegerWrapper(i))
         }
+
         return child
     }
 
@@ -162,45 +148,16 @@ class HDKey(
      * @param index value used to derive a key
      */
     fun deriveChild(index: BigIntegerWrapper): HDKey {
-        @Suppress("NAME_SHADOWING")
-        val index = index.value
-        if (chainCode == null) {
-            throw Exception("No chainCode set")
-        }
+        val derived = HDKey.deriveChild(this, index.value)
+        val keyData = privateKey ?: throw Error("Missing Key data")
+        val derivedData = derived.privateKey ?: throw Error("Missing Derived data")
+        val tweakedKey = KMMECSecp256k1PrivateKey.tweak(keyData, derivedData).raw
 
-        val data =
-            if (index >= HARDENED_OFFSET) {
-                val priv = privateKey ?: throw Error("Could not derive hardened child key")
-                byteArrayOf(0) + priv + index.toByteArray()
-            } else {
-                throw Exception("Not supported")
-            }
-
-        val i = sha512(chainCode, data)
-        val childTweak = i.sliceArray(IntRange(0, 31))
-        val newChainCode = i.sliceArray(32 until i.size)
-
-        if (!isValidPrivateKey(childTweak)) {
-            throw ECPrivateKeyDecodingException(
-                "Expected encoded byte length to be ${ECConfig.PRIVATE_KEY_BYTE_SIZE}, but got ${data.size}"
-            )
-        }
-
-        val opt =
-            HDKeyOptions(
-                versions = Pair(BITCOIN_VERSIONS_PRIVATE, BITCOIN_VERSIONS_PUBLIC),
-                chainCode = newChainCode,
-                depth = depth + 1,
-                parentFingerprint = null,
-                index = index
-            )
-
-        opt.privateKey = KMMECSecp256k1PrivateKey.tweak(privateKey, childTweak).raw
         return HDKey(
-            privateKey = opt.privateKey,
-            chainCode = opt.chainCode,
-            depth = opt.depth,
-            childIndex = BigIntegerWrapper(opt.index)
+            privateKey = tweakedKey,
+            chainCode = derived.chainCode,
+            depth = derived.depth,
+            childIndex = derived.childIndex
         )
     }
 
@@ -268,5 +225,98 @@ class HDKey(
             sha512.update(input)
             return sha512.doFinal()
         }
+
+        /**
+         * Initialize a HDKey from a curve and seed
+         */
+        fun fromSeed(curve: String, seed: ByteArray) : HDKey {
+            val init = "$curve seed".encodeToByteArray()
+            val result = sha512(init, seed)
+            val privateKey = result.sliceArray(IntRange(0, 31))
+            val chainCode = result.sliceArray(32 until result.size)
+
+            return HDKey(privateKey = privateKey, chainCode = chainCode)
+        }
+
+        /**
+         * Derive a HDKey for curve with path
+         */
+        fun deriveCurveFromPath(curve: String, key: HDKey, path: String) : HDKey {
+            val indexes = pathToIndexes(path)
+            var current = key
+
+            for (i in indexes) {
+                if(curve == "ed25519") {
+                    current = deriveChild(key = current, index = i)
+                }
+                else {
+                    current = key.deriveChild(BigIntegerWrapper(i))
+                }
+            }
+
+            return current
+        }
+
+        /**
+         * Convert a path string to an index array
+         */
+        private fun pathToIndexes(path: String) : List<BigInteger> {
+            if (!path.matches(Regex("^[mM].*"))) {
+                throw Error("Path must start with \"m\" or \"M\"")
+            }
+            if (Regex("^[mM]'?$").matches(path)) {
+                return emptyList()
+            }
+
+            val parts = path.replace(Regex("^[mM]'?/"), "").split("/")
+            val indexes = mutableListOf<BigInteger>()
+
+            for (c in parts) {
+                val m = Regex("^(\\d+)('?)$").find(c)?.groupValues
+                if (m == null || m.size != 3) {
+                    throw Error("Invalid child index: $c")
+                }
+                val idx = m[1].toBigInteger()
+                if (idx >= HARDENED_OFFSET) {
+                    throw Error("Invalid index")
+                }
+
+                val finalIdx = if (m[2] == "'") idx + HARDENED_OFFSET else idx
+                indexes.add(finalIdx)
+            }
+
+            return indexes
+        }
+
+        /**
+         * Method to derive a HDKey child by index
+         *
+         * @param index value used to derive a key
+         */
+        fun deriveChild(key: HDKey, index: BigInteger): HDKey {
+            if (key.chainCode == null) {
+                throw Exception("No chainCode set")
+            }
+
+            val data =
+                if (index >= HARDENED_OFFSET) {
+                    val priv = key.privateKey ?: throw Error("Could not derive hardened child key")
+                    byteArrayOf(0) + priv + index.toByteArray()
+                } else {
+                    throw Exception("Not supported")
+                }
+
+            val i = sha512(key.chainCode, data)
+            val childTweak = i.sliceArray(IntRange(0, 31))
+            val newChainCode = i.sliceArray(32 until i.size)
+
+            return HDKey(
+                privateKey = childTweak,
+                chainCode = newChainCode,
+                childIndex = BigIntegerWrapper(index),
+                depth = key.depth + 1
+            )
+        }
+
     }
 }

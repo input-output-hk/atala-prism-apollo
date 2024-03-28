@@ -244,6 +244,8 @@ kotlin {
                 implementation("com.ionspin.kotlin:bignum:0.3.9")
                 implementation("org.kotlincrypto.macs:hmac-sha2:0.3.0")
                 implementation("org.kotlincrypto.hash:sha2:0.4.0")
+
+                implementation("com.ionspin.kotlin:multiplatform-crypto-libsodium-bindings:0.9.0")
             }
         }
         val commonTest by getting {

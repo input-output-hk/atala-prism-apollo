@@ -3,6 +3,7 @@ package io.iohk.atala.prism.apollo.derivation
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import io.iohk.atala.prism.apollo.base64.base64UrlDecodedBytes
 import io.iohk.atala.prism.apollo.derivation.HDKey.Companion.HARDENED_OFFSET
+import io.iohk.atala.prism.apollo.utils.toHexString
 import kotlin.random.Random
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -126,4 +127,46 @@ class HDKeyTest {
         val key = hdKey.getKMMSecp256k1PrivateKey()
         assertNotNull(key)
     }
+
+    // test vectors: https://github.com/satoshilabs/slips/blob/master/slip-0010.md#test-vector-2-for-ed25519
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testFromSeed() {
+        val seedHex = "fffcf9f6f3f0edeae7e4e1dedbd8d5d2cfccc9c6c3c0bdbab7b4b1aeaba8a5a29f9c999693908d8a8784817e7b7875726f6c696663605d5a5754514e4b484542"
+        val seed = seedHex.hexToByteArray()
+        val key = HDKey.fromSeed("ed25519", seed)
+
+        assertEquals("171cb88b1b3c1db25add599712e36245d75bc65a1a5c9e18d76f9f2b1eab4012", key.privateKey?.toHexString())
+        assertEquals("ef70a74db9c3a5af931b5fe73ed8e1a53464133654fd55e7a66f8570b8e33c3b", key.chainCode?.toHexString())
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testFromSeed_Derive_1() {
+        val seedHex = "fffcf9f6f3f0edeae7e4e1dedbd8d5d2cfccc9c6c3c0bdbab7b4b1aeaba8a5a29f9c999693908d8a8784817e7b7875726f6c696663605d5a5754514e4b484542"
+        val seed = seedHex.hexToByteArray()
+        val key = HDKey.fromSeed("ed25519", seed)
+        val derived = HDKey.deriveCurveFromPath("ed25519", key, "m/0'")
+
+        assertEquals("1559eb2bbec5790b0c65d8693e4d0875b1747f4970ae8b650486ed7470845635", derived.privateKey?.toHexString())
+        assertEquals("0b78a3226f915c082bf118f83618a618ab6dec793752624cbeb622acb562862d", derived.chainCode?.toHexString())
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    @Test
+    fun testFromSeed_Derive_2() {
+        val seedHex = "fffcf9f6f3f0edeae7e4e1dedbd8d5d2cfccc9c6c3c0bdbab7b4b1aeaba8a5a29f9c999693908d8a8784817e7b7875726f6c696663605d5a5754514e4b484542"
+        val seed = seedHex.hexToByteArray()
+        val curve = "ed25519"
+        val key = HDKey.fromSeed(curve, seed)
+        val path = "m/0'/2147483647'"
+
+        val d2 = HDKey.deriveCurveFromPath(curve, key, path)
+        val d2key = d2.privateKey?.toHexString()
+        val d2code = d2.chainCode?.toHexString()
+
+        assertEquals("ea4f5bfe8694d8bb74b7b59404632fd5968b774ed545e810de9c32a4fb4192f4", d2key)
+        assertEquals("138f0b2551bcafeca6ff2aa88ba8ed0ed8de070841f0c4ef0165df8181eaad7f", d2code)
+    }
+
 }
